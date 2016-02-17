@@ -1,8 +1,8 @@
-# GOURL - Simple URL Shorting Web Application [Linux Only]
- URL shorting app written in Golang 
+# GOURL
+ Simple URL Shortener Web Application [Linux Only] 
 
 # How to get
-*`go get github.com/gayanch/gourl`
+* `go get github.com/gayanch/gourl`
 * copy 'static' & 'template' folders to 'bin' directory
 * run
 
@@ -11,6 +11,6 @@
 * Short URLs are stored in plain-text files, no databases
 
 # To-Do
-* Check whether particular long URL is shortned before generating a new short URL
+* Check whether particular long URL is shortened before generating a new short URL
 * More customization options without editing source code
 * many more...
