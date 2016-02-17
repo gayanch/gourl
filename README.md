@@ -1,7 +1,5 @@
-# gourl - Simple URL Shorting Web Application
-## [Linux Only]
-
-URL shorting app written in Golang 
+# GOURL - Simple URL Shorting Web Application [Linux Only]
+ URL shorting app written in Golang 
 
 # How to get
 *`go get github.com/gayanch/gourl`
