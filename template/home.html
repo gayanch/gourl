@@ -1,62 +1,108 @@
-<!DOCTYPE html>
-
 <html>
-    <head>
-        <title>GOURL</title>
-        <link rel="stylesheet" href="/static/bootstrap.min.css">
-    </head>
+<head>
+    <title>GOURL</title>
 
-    <body>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12 well text-center text-primary panel">
-                    <span class="h1">GOURL</span>
-                </div>
-            </div>
+</head>
+
+<body>
+<div class="container-fluid">
+    <div class="row" style="
+    border-bottom: 2px solid rgba(33, 150, 243, 0.15);
+    padding: 20px;
+">
+        <div class="col-md-12 well text-center text-primary panel" style="
+    text-align: center;
+    font-family: sans-serif;
+    color: #308FCE;
+">
+                    <span class="h1" style="
+    margin: 0 auto;
+    font-size: 48px;
+    font-weight: bold;
+">GOURL</span>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 well panel panel-primary">
+
+            <p><input class="form-control" type="text" name="long-url" placeholder="Long URL" required="" id="longurl"
+                      style="
+    margin: 0 auto;
+    display: block;
+    width: 50%;
+    margin-top: 90px;
+    height: 40px;
+    border: 3px solid #2196F3;
+    border-radius: 15px;
+    padding-left: 50px;
+    font-size: 20px;
+    padding-right: 50px;
+    -webkit-appearance: none;
+"></p>
+            <p><input type="submit" class="btn btn-primary pull-right" value="Short!" id="generate" style="
+    margin: 0 auto;
+    display: block;
+    background: #3498db;
+    background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+    background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+    background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+    background-image: -o-linear-gradient(top, #3498db, #2980b9);
+    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+    -webkit-border-radius: 10;
+    -moz-border-radius: 10;
+    border-radius: 10px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    border: none;
+    width: 158px;
+    cursor: pointer;
+"></p>
+
         </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-md-offset-4 well panel panel-primary">
-
-                        <p> <input class="form-control" type="text" name="long-url" placeholder="Long URL" required="" id="longurl"> </p>
-                        <p> <input type="submit" class="btn btn-primary pull-right" value="Short!" id="generate"> </p>
-
-                </div>
-            </row>
-        </div>
-        <br/><br/>
-        <div class="row">
-            <div class="col-md-5 col-md-offset-1">
-                <span class="h2 text-primary">
-                    Shorten URL:
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col-md-5 " style="
+    width: 100%;
+    text-align: center
+">
+                <span class="h2 text-primary" style="
+    font-family: sans-serif;
+">
+                    Shorten URL: Provide a Link and Click Short!
                 </span>
-            </div>
-
-            <div class="col-md-6">
-                <span class="h2 text-danger" id="shorturl">
-                    Provide a Link and Click Short!
-                </span>
-            </div>
         </div>
 
-        <script type="text/javascript" src="/static/jquery.min.js"></script>
 
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $("#generate").on("click", function(e) {
-                    var longurl = $("#longurl").val();
+    </div>
 
-                    $.ajax ({
-                        url: "/",
-                        type: "post",
-                        data: {"longurl": longurl},
-                        success: function(response, status) {
-                            $("#shorturl").html(response)
-                        }
-                    });
-                })
-            });
-        </script>
-    </body>
+    <script type="text/javascript" src="/static/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#generate").on("click", function (e) {
+                var longurl = $("#longurl").val();
+
+                $.ajax({
+                    url: "/",
+                    type: "post",
+                    data: {"longurl": longurl},
+                    success: function (response, status) {
+                        $("#shorturl").html(response)
+                    }
+                });
+            })
+        });
+    </script>
+
+
+</div>
+</body>
 </html>
