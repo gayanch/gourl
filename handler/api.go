@@ -12,7 +12,6 @@ const (
 )
 
 func Api(w http.ResponseWriter, r *http.Request) {
-    fmt.Println(r.Method, r.URL)
 
     r.ParseForm()
     if len(r.Form) != 2 {

@@ -15,7 +15,6 @@ const (
 )
 
 func Home(w http.ResponseWriter, r *http.Request) {
-      fmt.Println(r.Method, r.URL)
 
       //GET resuest, serve homepage
       if r.Method == "GET" {
@@ -43,7 +42,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
 
           if shorturl, err := manager.SaveUrl(longurl); err == nil {
               fmt.Fprintf(w, "%s/%s", SITE_ADDRESS, shorturl)
-              
+
           } else {
               fmt.Fprintf(w, "Error generating url")
           }
