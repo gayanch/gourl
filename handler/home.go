@@ -33,12 +33,6 @@ func Home(w http.ResponseWriter, r *http.Request) {
           r.ParseForm()
           longurl := r.Form["longurl"][0]
 
-          //check whether http:// is present in address
-          //it is required in order to work redirect correctly
-          if longurl[: len("http://")] != "http://" {
-              longurl = "http://" + longurl
-          }
-
           if shorturl, err := manager.SaveUrl(longurl); err == nil {
               fmt.Fprintf(w, "%s/%s", SITE_ADDRESS, shorturl)
           } else {

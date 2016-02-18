@@ -16,8 +16,10 @@ func SaveUrl(longurl string) (shorturl string, err error) {
     os.Mkdir(URL_DIR, os.ModePerm)
     os.Mkdir(LONG_URL_DIR, os.ModePerm)
 
+    longurl = FormatUrl(longurl)
+
     //check whether short url for given long url is already generated
-    replacer := strings.NewReplacer("/", "*")
+    replacer := strings.NewReplacer("/", "$")
     filename := replacer.Replace(longurl)
     fmt.Println(filename)
 

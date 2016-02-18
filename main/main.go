@@ -10,6 +10,7 @@ func main() {
     fs := http.FileServer(http.Dir("static"))
     http.Handle("/static/", http.StripPrefix("/static/", fs))
 
+    http.HandleFunc("/api", handler.Api)
     http.HandleFunc("/", handler.Home)
 
     http.ListenAndServe(":8080", nil)
