@@ -3,7 +3,6 @@ package manager
 import (
     "os"
     "fmt"
-    "strings"
 )
 
 const (
@@ -20,8 +19,7 @@ func SaveUrl(longurl string) (shorturl string, err error) {
     longurl = FormatUrl(longurl)
 
     //check whether short url for given long url is already generated
-    replacer := strings.NewReplacer("/", "$")
-    filename := replacer.Replace(longurl)
+    filename := UrlToHash(longurl)
 
     if longUrlFile, err := os.Open(LONG_URL_DIR + filename); err == nil {
         //generated shorturl found
