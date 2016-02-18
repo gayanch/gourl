@@ -1,5 +1,5 @@
 # GOURL
- Simple URL Shortener Web Application [Linux Only] 
+ Simple URL Shortener Web Application
 
 # How to get
 * `go get github.com/gayanch/gourl`
