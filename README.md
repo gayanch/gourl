@@ -3,8 +3,9 @@
 
 # How to get
 * `go get github.com/gayanch/gourl`
-* copy 'static' & 'template' folders to 'bin' directory
-* run
+* Build
+* Copy 'static' & 'template' folders to 'bin' directory
+* Run
 
 # Notes
 * Normally app runs on localhost:8080
