@@ -11,8 +11,8 @@
 * Short URLs are stored in plain-text files, no databases
 
 # To-Do
-* [x] Check whether particular long URL is already shortened before generating a new short URL
-* [x] Drop Linux dependability
-* [] More customization options without editing source code
-* [] Improve front-end's look & feel
-* [] many more...
+- [x] Check whether particular long URL is already shortened before generating a new short URL
+- [x] Drop Linux dependability
+- [ ] More customization options without editing source code
+- [ ] Improve front-end's look & feel
+- [ ] many more...
