@@ -5,6 +5,8 @@ const (
     HTTPS_PREFIX = "https://"
 )
 
+//appends http:// prefix to given longurl if not present
+//http:// prefix is required to perform redurect correctly
 func FormatUrl(url string) string {
     switch {
         case len(url) < len(HTTP_PREFIX):

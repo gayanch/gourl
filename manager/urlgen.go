@@ -9,6 +9,7 @@ const (
     //max length of a short url
     MAX_URL_LEN = 4
 
+    //string used to generate short codes
     GEN_STRING = "0123456789" +
                     "ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
                     "abcdefghijklmnopqrstuvwxyz"

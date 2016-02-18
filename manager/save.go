@@ -12,6 +12,7 @@ const (
     LONG_URL_DIR = "longurls/"
 )
 
+//Saves the given longurl in filesystem and returns the generated shorturl
 func SaveUrl(longurl string) (shorturl string, err error) {
     os.Mkdir(URL_DIR, os.ModePerm)
     os.Mkdir(LONG_URL_DIR, os.ModePerm)
