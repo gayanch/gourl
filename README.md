@@ -7,6 +7,19 @@
 * Copy 'static' & 'template' folders to 'bin' directory
 * Run
 
+# Usage
+ * Goto `src/github.com/gayanch/gourl/handler.go` and change `SITE_ADDRESS` according to your domain name
+ * Customize front-end by changing `bin/template/home.html`
+ * Build & Run
+
+### Using API
+ * Generate short URL
+ ** `<host>/api?api=short&url=www.google.lk` will return JSON output `{response: <4 letter shortcode>}`
+
+ * Query short URL
+ ** `<host>/api?api=long&url=<4 letter shortcode>` will return JSON output `{response: <long url>}`
+
+
 # Notes
 * Normally app runs on localhost:8080
 * Short URLs are stored in plain-text files, no databases
