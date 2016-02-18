@@ -17,8 +17,9 @@ func main() {
 
 // import (
 //     "github.com/gayanch/gourl/manager"
+//     "fmt"
 // )
 //
 // func main() {
-//     manager.SaveUrl("http://www.facebook.com/gayanch")
+//     fmt.Println(manager.GenerateUrl())
 // }
