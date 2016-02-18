@@ -14,3 +14,11 @@ func main() {
 
     http.ListenAndServe(":8080", nil)
 }
+
+// import (
+//     "github.com/gayanch/gourl/manager"
+// )
+//
+// func main() {
+//     manager.SaveUrl("http://www.facebook.com/gayanch")
+// }

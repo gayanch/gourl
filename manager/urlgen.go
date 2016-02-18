@@ -10,12 +10,16 @@ const (
     MAX_URL_LEN = 4
 )
 
+//generates a randrom string with length of MAX_URL_LEN
+//To-Do:
+//use go lang's rand package instead of uding linux specific method
 func GenerateUrl() string {
     var (
         char rune
         url string
     )
-    
+
+    //Linux (may be unix/Mac) only
     file, _ := os.Open("/dev/urandom")
     defer file.Close()
 
