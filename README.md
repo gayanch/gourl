@@ -14,10 +14,10 @@
 
 ### Using API
  * Generate short URL
- ** `<host>/api?api=short&url=www.google.lk` will return JSON output `{response: <4 letter shortcode>}`
+  ** `<host>/api?api=short&url=www.google.lk` will return JSON output `{response: <4 letter shortcode>}`
 
  * Query short URL
- ** `<host>/api?api=long&url=<4 letter shortcode>` will return JSON output `{response: <long url>}`
+  ** `<host>/api?api=long&url=<4 letter shortcode>` will return JSON output `{response: <long url>}`
 
 
 # Notes
