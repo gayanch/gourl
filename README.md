@@ -13,6 +13,7 @@
 # To-Do
 - [x] Check whether particular long URL is already shortened before generating a new short URL
 - [x] Drop Linux dependability
+- [x] API functions
 - [ ] More customization options without editing source code
 - [ ] Improve front-end's look & feel
 - [ ] many more...
