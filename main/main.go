@@ -15,12 +15,3 @@ func main() {
 
     http.ListenAndServe(":8080", nil)
 }
-
-// import (
-//     "github.com/gayanch/gourl/manager"
-//     "fmt"
-// )
-//
-// func main() {
-//     fmt.Println(manager.GenerateUrl())
-// }

@@ -21,9 +21,9 @@ func SaveUrl(longurl string) (shorturl string, err error) {
     //check whether short url for given long url is already generated
     replacer := strings.NewReplacer("/", "$")
     filename := replacer.Replace(longurl)
-    fmt.Println(filename)
 
     if longUrlFile, err := os.Open(LONG_URL_DIR + filename); err == nil {
+        //generated shorturl found
         fmt.Fscanf(longUrlFile, "%s", &shorturl)
         longUrlFile.Close()
     } else {
