@@ -3,6 +3,7 @@ package manager
 import (
     "os"
     "fmt"
+    "net/url"
 )
 
 const (
@@ -18,7 +19,14 @@ func SaveUrl(longurl string) (shorturl string, err error) {
 
     longurl = FormatUrl(longurl)
 
+    //escape url
+    if url, err := url.Parse(longurl); err == nil {
+        longurl = url.String()
+    }
+
+
     //check whether short url for given long url is already generated
+    //hash longurls before saving/retrieving to avoid file-system restrictions
     filename := UrlToHash(longurl)
 
     if longUrlFile, err := os.Open(LONG_URL_DIR + filename); err == nil {
