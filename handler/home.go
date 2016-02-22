@@ -41,10 +41,10 @@ func Home(w http.ResponseWriter, r *http.Request) {
           longurl := r.Form["longurl"][0]
 
           if shorturl, err := manager.SaveUrl(longurl); err == nil {
-              fmt.Fprintf(w, "%s/%s", SITE_ADDRESS, shorturl)
+              fmt.Fprintf(w, "<a href='/%s'>%s</a>", shorturl, shorturl)
 
           } else {
-              fmt.Fprintf(w, "Error generating url")
+              fmt.Fprintf(w, "Error generating URL")
           }
       }
 }
