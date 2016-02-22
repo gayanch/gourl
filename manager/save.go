@@ -17,13 +17,12 @@ func SaveUrl(longurl string) (shorturl string, err error) {
     os.Mkdir(URL_DIR, os.ModePerm)
     os.Mkdir(LONG_URL_DIR, os.ModePerm)
 
-    longurl = FormatUrl(longurl)
+    longurl, err = FormatUrl(longurl)
 
     //escape url
     if url, err := url.Parse(longurl); err == nil {
         longurl = url.String()
     }
-
 
     //check whether short url for given long url is already generated
     //hash longurls before saving/retrieving to avoid file-system restrictions
@@ -35,6 +34,7 @@ func SaveUrl(longurl string) (shorturl string, err error) {
         longUrlFile.Close()
     } else {
         //no generated url found, generate new one
+        //repeat while new short code is found
         for {
             shorturl = GenerateUrl()
             if urlfile, err := os.Open(URL_DIR + shorturl); err != nil {
@@ -48,6 +48,8 @@ func SaveUrl(longurl string) (shorturl string, err error) {
                 fmt.Fprintf(longUrlFile, "%s", shorturl)
 
                 break
+            } else {
+                urlfile.Close()
             }
         }
     }

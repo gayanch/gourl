@@ -7,17 +7,29 @@ const (
 
 //appends http:// prefix to given longurl if not present
 //http:// prefix is required to perform redurect correctly
-func FormatUrl(url string) string {
+func FormatUrl(url string) (string, error) {
+
+    var (
+        returl string = ""
+        err error = nil
+    )
+
     switch {
+        case len(url) == 0:
+            //handle empty url error here or in client-side
+
         case len(url) < len(HTTP_PREFIX):
-            url = HTTP_PREFIX + url
+            returl = HTTP_PREFIX + url
 
         case url[ :len(HTTPS_PREFIX)] == HTTPS_PREFIX:
-            //do nothing
+            returl = url
+
+        case url[ : len(HTTP_PREFIX)] == HTTP_PREFIX:
+            returl = url
 
         case url[ :len(HTTP_PREFIX)] != HTTP_PREFIX:
-            url = HTTP_PREFIX + url
+            returl = HTTP_PREFIX + url
     }
 
-    return url
+    return returl, err
 }
