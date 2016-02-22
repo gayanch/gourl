@@ -4,6 +4,7 @@ import (
     "net/http"
     "html/template"
     "fmt"
+    "time"
 
     "github.com/gayanch/gourl/manager"
 )
@@ -15,10 +16,11 @@ const (
 )
 
 func Home(w http.ResponseWriter, r *http.Request) {
+    fmt.Println(r.Method, r.URL, time.Now())
 
-      //GET resuest, serve homepage
-      if r.Method == "GET" {
-          if len(r.URL.Path) == 1 {
+    //GET resuest, serve homepage
+    if r.Method == "GET" {
+        if len(r.URL.Path) == 1 {
             //no short url, serve home
             t, _ := template.ParseFiles("template/home.html")
             t.ExecuteTemplate(w, t.Name(), nil)
