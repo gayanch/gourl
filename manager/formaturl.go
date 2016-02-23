@@ -24,7 +24,7 @@ func FormatUrl(url string) (string, error) {
             //handle empty url error here or in client-side
             err = errors.New("Invalid URL")
 
-        case len(url) < len(HTTP_PREFIX):
+        case len(url) <= len(HTTP_PREFIX):
             returl = HTTP_PREFIX + url
 
         case url[ : len(HTTP_PREFIX)] == HTTP_PREFIX,

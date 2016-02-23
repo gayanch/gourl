@@ -4,7 +4,7 @@
 
 </head>
 
-<body>
+<body style="height:100%;">
 <div class="container-fluid">
     <div class="row" style="
     border-bottom: 2px solid rgba(33, 150, 243, 0.15);
@@ -77,8 +77,6 @@
                     Shorten URL: &nbsp;&nbsp;<span id="shorturl" class="text-primary">Provide a Link and Click Short!<span>
                 </span>
         </div>
-
-
     </div>
 
     <script type="text/javascript" src="/static/jquery.min.js"></script>
@@ -87,7 +85,7 @@
         $(document).ready(function () {
             $("#generate").on("click", function (e) {
                 var longurl = $("#longurl").val();
-
+				$("#shorturl").html("A moment...")
                 $.ajax({
                     url: "/",
                     type: "post",
