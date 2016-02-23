@@ -29,5 +29,5 @@
 - [x] Drop Linux dependability
 - [x] API functions
 - [ ] More customization options without editing source code
-- [ ] Improve front-end's look & feel
+- [x] Improve front-end's look & feel
 - [ ] many more...

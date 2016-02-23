@@ -2,6 +2,7 @@ package main
 
 import (
   "net/http"
+  "os"
 
   "github.com/gayanch/gourl/handler"
 )
@@ -13,5 +14,9 @@ func main() {
     http.HandleFunc("/api", handler.Api)
     http.HandleFunc("/", handler.Home)
 
-    http.ListenAndServe(":8080", nil)
+    if port := os.Getenv("PORT"); port == "" {
+        http.ListenAndServe(":8080", nil)
+    } else {
+        http.ListenAndServe(":" + port, nil)
+    }
 }

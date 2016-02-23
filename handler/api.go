@@ -3,6 +3,7 @@ package handler
 import (
     "net/http"
     "fmt"
+    "time"
 
     "github.com/gayanch/gourl/manager"
 )
@@ -12,6 +13,7 @@ const (
 )
 
 func Api(w http.ResponseWriter, r *http.Request) {
+    fmt.Println(r.Method, r.URL, time.Now())
 
     r.ParseForm()
     if len(r.Form) != 2 {

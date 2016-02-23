@@ -4,6 +4,7 @@ import (
     "net/http"
     "html/template"
     "fmt"
+    "time"
 
     "github.com/gayanch/gourl/manager"
 )
@@ -11,14 +12,15 @@ import (
 const (
     //this is the domain name which this app is hosted, modify it according to domain
     //this will not affect the functionalties of the app, just used to show users shorurls
-    SITE_ADDRESS = "test.com"
+    SITE_ADDRESS = "lh.dev"
 )
 
 func Home(w http.ResponseWriter, r *http.Request) {
+    fmt.Println(r.Method, r.URL, time.Now())
 
-      //GET resuest, serve homepage
-      if r.Method == "GET" {
-          if len(r.URL.Path) == 1 {
+    //GET resuest, serve homepage
+    if r.Method == "GET" {
+        if len(r.URL.Path) == 1 {
             //no short url, serve home
             t, _ := template.ParseFiles("template/home.html")
             t.ExecuteTemplate(w, t.Name(), nil)
@@ -41,10 +43,10 @@ func Home(w http.ResponseWriter, r *http.Request) {
           longurl := r.Form["longurl"][0]
 
           if shorturl, err := manager.SaveUrl(longurl); err == nil {
-              fmt.Fprintf(w, "%s/%s", SITE_ADDRESS, shorturl)
+              fmt.Fprintf(w, "<a href='/%s'>%s</a>", shorturl, shorturl)
 
           } else {
-              fmt.Fprintf(w, "Error generating url")
+              fmt.Fprintf(w, "Error generating URL")
           }
       }
 }
