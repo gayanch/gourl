@@ -43,7 +43,6 @@ func SaveUrl(longurl string) (shorturl string, err error) {
 		//repeat while new short code is found
 		for {
 			shorturl = GenerateUrl()
-
 			var urlfile *os.File
 			if urlfile, err = os.Open(URL_DIR + shorturl); err != nil {
 				//create shorturl file

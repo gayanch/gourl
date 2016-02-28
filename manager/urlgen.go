@@ -6,13 +6,13 @@ import (
 )
 
 const (
-	//max length of a short url
-	MAX_URL_LEN = 4
-
 	//string used to generate short codes
 	GEN_STRING = "0123456789" +
 		"ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
 		"abcdefghijklmnopqrstuvwxyz"
+
+	//maximum length of short code
+	MAX_URL_LEN = 4
 )
 
 //generates a randrom string with length of MAX_URL_LEN
