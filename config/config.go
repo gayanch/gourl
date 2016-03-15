@@ -9,16 +9,7 @@ const (
     CONFIG_FILE_NAME = "gourl.conf"
 )
 
-var (
-    configuration map[string]string
-)
-
-func init() {
-    check()
-    read()
-}
-
-func check() error {
+func Check() (*os.File, error) {
     var (
         file *os.File
         err error
@@ -28,17 +19,20 @@ func check() error {
         fmt.Fprintf(file, "domain:test.com\n")
         fmt.Fprintf(file, "url_len:4\n")
         fmt.Fprintf(file, "port:8080\n")
-        file.Close()
+        //file.Close()
     }
 
-    return err
+    return file, err
 }
 
-func read() {
-    configuration = make(map[string]string)
+func Read() map[string]string {
+    configuration := make(map[string]string)
     var option, value string
 
-    file, _ := os.Open(CONFIG_FILE_NAME)
+    file, err := os.Open(CONFIG_FILE_NAME)
+    if err != nil {
+        file, _ = Check()
+    }
     defer file.Close()
 
     for {
@@ -47,9 +41,11 @@ func read() {
         }
         configuration[option] = value
     }
+
+    return configuration
 }
 
-func Value(option string) (string, bool) {
-    value, ok := configuration[option]
-    return value, ok
-}
+// func Value(option string) (string, bool) {
+//     value, ok := configuration[option]
+//     return value, ok
+// }
