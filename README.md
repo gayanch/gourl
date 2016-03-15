@@ -21,7 +21,7 @@
 
 
 # Notes
-* Normally app runs on localhost:8080
+* Normally app runs on localhost:8080 (set environment variable to override `PORT=<port_no>`)
 * Short URLs are stored in plain-text files, no databases
 
 # To-Do
