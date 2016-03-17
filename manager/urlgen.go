@@ -3,6 +3,9 @@ package manager
 import (
 	"math/rand"
 	"time"
+
+	"github.com/gayanch/gourl/config"
+	"strconv"
 )
 
 const (
@@ -10,16 +13,22 @@ const (
 	GEN_STRING = "0123456789" +
 		"ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
 		"abcdefghijklmnopqrstuvwxyz"
-
-	//maximum length of short code
-	MAX_URL_LEN = 4
 )
 
 //generates a randrom string with length of MAX_URL_LEN
 func GenerateUrl() string {
 	var (
 		url string
+		MAX_URL_LEN int
 	)
+
+	//getting maximum short code length from configuration values
+	if value, ok := config.ConfigValues["url_len"]; ok {
+		MAX_URL_LEN, _ = strconv.Atoi(value)
+	} else {
+		//fallback value if configuration can't be readed
+		MAX_URL_LEN = 4
+	}
 
 	seed := rand.NewSource(time.Now().UnixNano())
 	randGen := rand.New(seed)
