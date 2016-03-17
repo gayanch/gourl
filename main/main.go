@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/gayanch/gourl/handler"
+	"github.com/gayanch/gourl/config"
 )
 
 func main() {
@@ -15,8 +16,13 @@ func main() {
 	http.HandleFunc("/", handler.Home)
 
 	if port := os.Getenv("PORT"); port == "" {
-		http.ListenAndServe(":8080", nil)
+		if port, ok := config.ConfigValues["port"]; ok {
+			http.ListenAndServe(":" + port, nil)
+		} else {
+			http.ListenAndServe(":8080", nil)
+		}
 	} else {
-		http.ListenAndServe(":"+port, nil)
+		//environment variable takes highest priority
+		http.ListenAndServe(":" + port, nil)
 	}
 }
