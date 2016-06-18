@@ -26,7 +26,7 @@ func GenerateUrl() string {
 	if value, ok := config.ConfigValues["url_len"]; ok {
 		MAX_URL_LEN, _ = strconv.Atoi(value)
 	} else {
-		//fallback value if configuration can't be readed
+		//fallback value if configuration can't be read
 		MAX_URL_LEN = 4
 	}
 

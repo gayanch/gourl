@@ -14,7 +14,12 @@ const (
 )
 
 //Saves the given longurl in filesystem and returns the generated shorturl
-func SaveUrl(longurl string) (shorturl string, err error) {
+func SaveUrl(longurl string) (string, error) {
+	var (
+		shorturl string
+		err error
+	)
+
 	os.Mkdir(URL_DIR, os.ModePerm)
 	os.Mkdir(LONG_URL_DIR, os.ModePerm)
 
@@ -23,8 +28,9 @@ func SaveUrl(longurl string) (shorturl string, err error) {
 	}
 
 	//escape url
-	if url, err := url.Parse(longurl); err == nil {
-		longurl = url.String()
+	var furl *url.URL
+	if furl, err = url.Parse(longurl); err == nil {
+		longurl = furl.String()
 	} else {
 		return "", errors.New("Invalid URL")
 	}
@@ -61,5 +67,5 @@ func SaveUrl(longurl string) (shorturl string, err error) {
 			}
 		}
 	}
-	return
+	return "", errors.New("URL Saving error")
 }
