@@ -44,6 +44,8 @@ func SaveUrl(longurl string) (string, error) {
 		//generated shorturl found
 		fmt.Fscanf(longUrlFile, "%s", &shorturl)
 		longUrlFile.Close()
+
+		return shorturl, nil
 	} else {
 		//no generated url found, generate new one
 		//repeat while new short code is found
@@ -66,6 +68,7 @@ func SaveUrl(longurl string) (string, error) {
 				urlfile.Close()
 			}
 		}
+		return shorturl, nil
 	}
 	return "", errors.New("URL Saving error")
 }
