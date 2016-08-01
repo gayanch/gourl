@@ -1,0 +1,8 @@
+{
+	"ImportPath": "github.com/gayanch/gourl",
+	"GoVersion": "go1.6",
+	"Packages": [
+		"./..."
+	],
+	"Deps": []
+}
