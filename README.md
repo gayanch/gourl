@@ -1,5 +1,5 @@
 # GOURL
- Simple URL Shortener Web Application
+ Simple URL Shortener Web Application. Demo is live at http://gourl.herokuapp.com
 
 # How to get
 * `go get github.com/gayanch/gourl`
