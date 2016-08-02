@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/gayanch/gourl/manager"
+	"github.com/gayanch/gourl/analytics"
 )
 
 const (
@@ -31,6 +32,8 @@ func Home(w http.ResponseWriter, r *http.Request) {
 			if longurl, err := manager.ReadUrl(shorturl); err == nil {
 				http.Redirect(w, r, longurl, 303)
 
+				//update analytics
+				analytics.Update(shorturl)
 			} else {
 				//given shorturl is not found, redirect to homepage
 				http.Redirect(w, r, "/", 303)
