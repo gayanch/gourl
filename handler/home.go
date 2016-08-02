@@ -12,7 +12,7 @@ import (
 const (
 	//this is the domain name which this app is hosted, modify it according to domain
 	//this will not affect the functionalties of the app, just used to show users shorurls
-	SITE_ADDRESS = "lh.dev"
+	SITE_ADDRESS = "gourl.herokuapp.com"
 )
 
 func Home(w http.ResponseWriter, r *http.Request) {
