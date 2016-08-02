@@ -7,12 +7,13 @@ import (
 	"time"
 
 	"github.com/gayanch/gourl/manager"
+	"github.com/gayanch/gourl/analytics"
 )
 
 const (
 	//this is the domain name which this app is hosted, modify it according to domain
 	//this will not affect the functionalties of the app, just used to show users shorurls
-	SITE_ADDRESS = "lh.dev"
+	SITE_ADDRESS = "gourl.herokuapp.com"
 )
 
 func Home(w http.ResponseWriter, r *http.Request) {
@@ -31,6 +32,8 @@ func Home(w http.ResponseWriter, r *http.Request) {
 			if longurl, err := manager.ReadUrl(shorturl); err == nil {
 				http.Redirect(w, r, longurl, 303)
 
+				//update analytics
+				analytics.Update(shorturl)
 			} else {
 				//given shorturl is not found, redirect to homepage
 				http.Redirect(w, r, "/", 303)
