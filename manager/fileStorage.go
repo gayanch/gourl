@@ -1,31 +1,29 @@
-//deprecated: now uses storage interface for easy swappings of storage methods
-//files, db, etc..
-//see: storage.go and fileStorage.go
-
 package manager
 
 import (
-	"errors"
-	"fmt"
-	"net/url"
 	"os"
+	"net/url"
+	"fmt"
+	"errors"
 )
 
-const (
-	//dir for save urls
-	URL_DIR      = "shorturls/"
-	LONG_URL_DIR = "longurls/"
-)
+type fileStorage struct {
+	shortUrlDir string
+	longUrlDir string
+}
 
-//Saves the given longurl in filesystem and returns the generated shorturl
-func SaveUrl(longurl string) (string, error) {
+func GetStorage(shortUrlDir, longUrlDir string) fileStorage {
+	return fileStorage{shortUrlDir, longUrlDir}
+}
+
+func (f fileStorage) SaveUrl(longurl string) (string, error) {
 	var (
 		shorturl string
 		err error
 	)
 
-	os.Mkdir(URL_DIR, os.ModePerm)
-	os.Mkdir(LONG_URL_DIR, os.ModePerm)
+	os.Mkdir(f.shortUrlDir, os.ModePerm)
+	os.Mkdir(f.longUrlDir, os.ModePerm)
 
 	if longurl, err = FormatUrl(longurl); err != nil {
 		return "", err
@@ -44,7 +42,7 @@ func SaveUrl(longurl string) (string, error) {
 	filename := UrlToHash(longurl)
 
 	var longUrlFile *os.File
-	if longUrlFile, err = os.Open(LONG_URL_DIR + filename); err == nil {
+	if longUrlFile, err = os.Open(f.longUrlDir + filename); err == nil {
 		//generated shorturl found
 		fmt.Fscanf(longUrlFile, "%s", &shorturl)
 		longUrlFile.Close()
@@ -56,14 +54,14 @@ func SaveUrl(longurl string) (string, error) {
 		for {
 			shorturl = GenerateUrl()
 			var urlfile *os.File
-			if urlfile, err = os.Open(URL_DIR + shorturl); err != nil {
+			if urlfile, err = os.Open(f.shortUrlDir + shorturl); err != nil {
 				//create shorturl file
-				urlfile, err = os.Create(URL_DIR + shorturl)
+				urlfile, err = os.Create(f.shortUrlDir + shorturl)
 				fmt.Fprintf(urlfile, "%s", longurl)
 				urlfile.Close()
 
 				//create longurl file
-				longUrlFile, _ = os.Create(LONG_URL_DIR + filename)
+				longUrlFile, _ = os.Create(f.longUrlDir + filename)
 				fmt.Fprintf(longUrlFile, "%s", shorturl)
 				longUrlFile.Close()
 
@@ -75,4 +73,19 @@ func SaveUrl(longurl string) (string, error) {
 		return shorturl, nil
 	}
 	return "", errors.New("URL Saving error")
+}
+
+func (f fileStorage) ReadUrl(shorturl string) (string, error) {
+	var (
+		urlfile *os.File
+		longurl string
+		err     error
+	)
+
+	if urlfile, err = os.Open(f.shortUrlDir + shorturl); err == nil {
+		fmt.Fscanf(urlfile, "%s", &longurl)
+		urlfile.Close()
+	}
+
+	return longurl, err
 }

@@ -1,3 +1,7 @@
+//deprecated: now uses storage interface for easy swappings of storage methods
+//files, db, etc..
+//see: storage.go and fileStorage.go
+
 package manager
 
 import (

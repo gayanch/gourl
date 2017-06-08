@@ -14,7 +14,17 @@ const (
 	//this is the domain name which this app is hosted, modify it according to domain
 	//this will not affect the functionalties of the app, just used to show users shorurls
 	SITE_ADDRESS = "gourl.herokuapp.com"
+	SHORT_URL_DIR      = "shorturls/"
+	LONG_URL_DIR = "longurls/"
 )
+
+var (
+	storage manager.Storage
+)
+
+func init() {
+	storage = manager.GetStorage(SHORT_URL_DIR, LONG_URL_DIR)
+}
 
 func Home(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(r.Method, r.URL, time.Now())
@@ -29,7 +39,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		} else {
 			//short url provided, redirect
 			shorturl := r.URL.Path[len("/"):]
-			if longurl, err := manager.ReadUrl(shorturl); err == nil {
+			if longurl, err := storage.ReadUrl(shorturl); err == nil {
 				http.Redirect(w, r, longurl, 303)
 
 				//update analytics
@@ -45,7 +55,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		r.ParseForm()
 		longurl := r.Form["longurl"][0]
 
-		if shorturl, err := manager.SaveUrl(longurl); err == nil {
+		if shorturl, err := storage.SaveUrl(longurl); err == nil {
 			fmt.Fprintf(w, "<a href='/%s'>%s</a>", shorturl, shorturl)
 
 		} else {
