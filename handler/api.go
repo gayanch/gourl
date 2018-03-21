@@ -18,8 +18,9 @@ func Api(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	if len(r.Form) != 2 {
 		fmt.Fprintf(w, INVALID_REQUEST)
-	} else {
+	} else {		
 		api := r.Form["api"][0]
+		w.Header().Set("Content-Type", "text/json")
 		switch api {
 		case "short":
 			longurl := r.Form["url"][0]
@@ -28,7 +29,7 @@ func Api(w http.ResponseWriter, r *http.Request) {
 
 		case "long":
 			shorturl := r.Form["url"][0]
-			if longurl, err := manager.ReadUrl(shorturl); err == nil {
+			if longurl, err := manager.ReadUrl(shorturl); err == nil {				
 				fmt.Fprintf(w, "{response: '%s'}", longurl)
 			} else {
 				fmt.Fprintf(w, INVALID_REQUEST)
