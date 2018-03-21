@@ -33,7 +33,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
 				http.Redirect(w, r, longurl, 303)
 
 				//update analytics
-				analytics.Update(shorturl)
+				analytics.GetAnalyticsService().Update(shorturl)
 			} else {
 				//given shorturl is not found, redirect to homepage
 				http.Redirect(w, r, "/", 303)

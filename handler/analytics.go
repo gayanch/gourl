@@ -12,6 +12,6 @@ func Analytics(w http.ResponseWriter, r *http.Request) {
         fmt.Fprintf(w, "No Url Specified")
     } else {
         shorturl := r.URL.Path[len("/analytics/"): ]
-        fmt.Fprintf(w, "Showing analytics for %s\n%s", shorturl, analytics.Get(shorturl))
+        fmt.Fprintf(w, "Showing analytics for %s\n%s", shorturl, analytics.GetAnalyticsService().Get(shorturl))
     }
 }
